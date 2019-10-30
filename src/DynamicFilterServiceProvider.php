@@ -12,6 +12,10 @@ class DynamicFilterServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'dynamic-filter');
+		$this->loadViewsFrom(__DIR__.'/views', 'dynamic-filter');
+		
+		$this->publishes([
+			__DIR__.'/views' => resource_path('views/vendor/dynamic-filter'),
+		]);
     }
 }
