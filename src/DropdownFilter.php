@@ -1,6 +1,8 @@
 <?php
 namespace AugustoMoura\DynamicFilter;
 
+use Illuminate\Support\Collection;
+
 class DropdownFilter
 {
 	public $fieldName;

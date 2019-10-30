@@ -63,33 +63,18 @@ class DynamicFilter
 
 	public function render()
 	{
-		ob_start();
-		?>
-
-		<div class="area-filter">
-			<div class="area-filter-items">
-				<?php foreach($this->filters as $filter): ?>
-					<?= $filter->render() ?>
-				<?php endforeach;?>	
-			</div>
-			<div class="area-applied-filter">
-			</div>
-			<input type="hidden" name="filters" value='{}' />
-		</div>
-		
-		<?php
-		return ob_get_clean();
+		return view('dynamic-filter::main', ['filters' => $this->filters]);
 	}
 
 	/**
-	 * Retorna string contendo um elemento <script> contendo script JS dos filtros dinâmicos.
+	 * Return string containg a <script> element that contains the necessary javascript for the dynamic filter. This needs to be added AFTER JQuery.
 	 */
 	public static function js() : string
 	{
 		ob_start();
 		?>
 		<script>
-			<?php require public_path('js/filtro-dinamico.js')?>
+			<?php require (DYNAMIC_FILTER_SRC . '/resources/js/dynamic-filter.js') ?>
 		</script>
 		<?php
 		return ob_get_clean();
