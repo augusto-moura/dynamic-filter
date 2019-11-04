@@ -12,7 +12,8 @@ class DynamicFilterServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		define('DYNAMIC_FILTER_SRC', __DIR__);
+		if(!defined('DYNAMIC_FILTER_SRC'))
+			define('DYNAMIC_FILTER_SRC', __DIR__);
 
 		$this->loadViewsFrom(DYNAMIC_FILTER_SRC . '/resources/views', 'dynamic-filter');
 		
