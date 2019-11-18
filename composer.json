@@ -26,5 +26,11 @@
 				"AugustoMoura\\DynamicFilter\\DynamicFilterServiceProvider"
 			]
 		}
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^4.3",
+		"vlucas/phpdotenv": "^3.6",
+		"orchestra/testbench-dusk": "^4.3",
+		"orchestra/testbench": "^4.0"
 	}
 }
