@@ -9,11 +9,24 @@ class DropdownFilter
 	public $label;
 	public $options;
 
-	function __construct(string $fieldName, string $label, Collection $options)
+	function __construct(string $fieldName, string $label, Collection $options, string $direction = 'down')
 	{
 		$this->fieldName = $fieldName;
 		$this->label = $label;
 		$this->options = $options;
+		$this->direction = $direction;
+	}
+
+	public function getBtnGroupClass()
+	{
+		switch($this->direction){
+			case 'up': return 'dropup';
+			case 'left': return 'dropleft';
+			case 'right': return 'dropright';
+			case 'down': 
+			default: 
+				return '';
+		}
 	}
 	
 	public function render()
@@ -22,6 +35,7 @@ class DropdownFilter
 			'fieldName' => $this->fieldName,
 			'label' => $this->label,
 			'options' => $this->options,
+			'btnGroupClass' => $this->getBtnGroupClass(),
 		]);
 	}
 }

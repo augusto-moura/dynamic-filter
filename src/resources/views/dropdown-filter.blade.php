@@ -1,4 +1,13 @@
-<div class="btn-group mr-2 mb-1 filter-item d-inline-block">
+@php
+/**
+ * @var string $fieldName
+ * @var string $label
+ * @var Illuminate\Support\Collection $options
+ * @var string $btnGroupClass
+ */
+@endphp
+
+<div class="btn-group mr-2 mb-1 filter-item d-inline-block {{ $btnGroupClass }} abc">
 	<button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		<b>{{$label}}</b>
 	</button>

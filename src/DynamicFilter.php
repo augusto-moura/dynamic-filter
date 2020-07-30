@@ -33,9 +33,9 @@ class DynamicFilter
 	 * @param Illuminate\Support\Collection $options The collection with the dropdown options. Each element must have the 'value' and 'label' keys.
 	 * @return self Self-returning.
 	 */
-	public function withDropdownFilter(string $fieldName, string $label, Collection $options)
+	public function withDropdownFilter(string $fieldName, string $label, Collection $options, string $direction = 'down')
 	{
-		$this->filters->push(new DropdownFilter($fieldName, $label, $options));
+		$this->filters->push(new DropdownFilter($fieldName, $label, $options, $direction));
 		return $this;
 	}
 
