@@ -23,6 +23,28 @@ class DynamicFilter
 	}
 
 	/**
+	 * Executes the provided closure and returns the object itself.
+	 * @param callable $callback Function with one parameter, which is called with the object itself as its parameter.
+	 */
+	public function tap(callable $callback) 
+	{
+		$callback($this);
+		return $this;
+	}
+
+	/**
+	 * Executes the provided closure and returns the object itself.
+	 * @param callable $callback Function with one parameter, which is called with the object itself as its parameter.
+	 */
+	public function when(bool $condition, callable $callback) 
+	{
+		if($condition)
+			$callback($this);
+			
+		return $this;
+	}
+
+	/**
 	 * Set the initial values for the dynamic filter. The filter will be rendered with these values already applied.
 	 * @param Iterable $initialValues The values with which the filter will be rendered initially. Can be an array or Illuminate\Support\Collection. Ex.: ['user' => ['value' => 1, 'label' => 'User: John']]
 	 * @return self Self-returning.
