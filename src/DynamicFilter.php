@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 class DynamicFilter
 {
 	public $filters; //Illuminate\Support\Collection
+	public $initialValues; //Illuminate\Support\Collection
 	const TEXT = 'text';
 	const DROPDOWN = 'dropdown';
 	const CHECKBOX = 'checkbox';
@@ -13,11 +14,23 @@ class DynamicFilter
 	function __construct()
 	{
 		$this->filters = new Collection();
+		$this->initialValues = collect([]);
 	}
 
 	public static function new()
 	{
 		return new self();
+	}
+
+	/**
+	 * Set the initial values for the dynamic filter. The filter will be rendered with these values already applied.
+	 * @param Iterable $initialValues The values with which the filter will be rendered initially. Can be an array or Illuminate\Support\Collection. Ex.: ['user' => ['value' => 1, 'label' => 'User: John']]
+	 * @return self Self-returning.
+	 */
+	public function withInitialValues(Iterable $initialValues)
+	{
+		$this->initialValues = Collection::wrap($initialValues);
+		return $this;
 	}
 
 	public function withTextFilter(string $fieldName, string $placeholder)
@@ -63,7 +76,10 @@ class DynamicFilter
 
 	public function render()
 	{
-		return view('dynamic-filter::main', ['filters' => $this->filters]);
+		return view('dynamic-filter::main', [
+			'filters' => $this->filters, 
+			'initialValues' => $this->initialValues,
+		]);
 	}
 
 	/**

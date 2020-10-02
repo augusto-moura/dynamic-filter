@@ -94,4 +94,6 @@ $(document).ready(function(){
 		let label = $checkbox.attr('data-label');
 		$checkbox.closest('.filter-item').trigger('value-change', [field, value, label]);
 	});
+
+	refreshAppliedFilters();
 });
